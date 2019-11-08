@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 void main(){
   var nombre = 'Luna';
   print('Hello $nombre!');
@@ -24,6 +26,14 @@ void main(){
   final can = Can('Rojo', 'Labrador'); //con final nunca cambia su valor, pero si se pueden cambiar sus propiedades
   print(can.showCan()); //Mostrando la fx ShowCan
   
+  //Creando una constante, tipo json
+  final heroeJson = '{"Nombre": "SuperJavi", "Poder": "QuemarWeed"}';
+  Map paseJson = json.decode(heroeJson); //Esto es un objeto tipo Map
+  print(heroeJson); //JSON sin parse
+  print(paseJson); //Se parseo
+  final heroe = new Heroe.fromJson(paseJson);
+  print(heroe.nombre);
+  print(heroe.poder);
 }
 
 //nueva funcion para Dart
@@ -39,7 +49,7 @@ class Can{
   String color;
   String raza; 
   
-  //constructor de Can
+  //constructor de Can, Constructor largo
   Can(String color, String raza){
     this.color = color; //propiedades del constructor
     this.raza = raza;
@@ -51,3 +61,21 @@ class Can{
   }
  
 }
+
+//Constructor Con Nombre
+class Heroe{
+  String nombre;
+  String poder;
+  
+  //Constructor de Heroé, este es un constructor short
+  Heroe(this.nombre, this.poder);
+  Heroe.fromJson(Map paseJson){ //Este es unconstructor con nombre de tipo Map
+    nombre = paseJson['Nombre']; //Ojo con las Mayusculas
+    poder  = paseJson['Poder'];
+  }
+}
+
+ 
+  
+
+
