@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 void main(){
   var nombre = 'Luna';
   print('Hello $nombre!');
@@ -34,7 +33,16 @@ void main(){
   final heroe = new Heroe.fromJson(paseJson);
   print(heroe.nombre);
   print(heroe.poder);
+  
+  //Accediendo al Getter and Setter
+  final rombo = Rombo();
+  rombo.lado =10;
+  rombo._alto = 5;
+  print('El area del Rombo es de ${rombo.area}');
+  
 }
+
+
 
 //nueva funcion para Dart
 String amo_dog(nombre){
@@ -75,6 +83,26 @@ class Heroe{
   }
 }
 
+//Getters and Setters, con variables private
+class Rombo{
+  double _lado;
+  double _alto;
+  
+  set lado(double valor){
+    if (valor <=0){
+      throw('El Lado del Rombo es menor que 0');
+    }
+    _lado = valor;
+  }
+  
+  //Calculando el area
+  double get area{
+    return (_lado * _lado);
+  }
+}
+
+ 
+  
  
   
 
